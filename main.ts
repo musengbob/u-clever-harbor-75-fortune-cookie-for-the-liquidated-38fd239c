@@ -21,6 +21,10 @@ const ENTRY =
 
 const repoRoot = fileURLToPath(new URL('.', import.meta.url));
 
+function buildEntryLine(): string {
+  return ENTRY;
+}
+
 function resolveOutputDir(): string {
   const fromEnv = process.env.MAKEFUN_OUTPUT_DIR;
   if (fromEnv && fromEnv.trim() !== '') return fromEnv;
@@ -29,4 +33,4 @@ function resolveOutputDir(): string {
 
 const outDir = resolveOutputDir();
 mkdirSync(outDir, { recursive: true });
-writeFileSync(join(outDir, 'entry.txt'), ENTRY, 'utf8');
+writeFileSync(join(outDir, 'entry.txt'), buildEntryLine(), 'utf8');
